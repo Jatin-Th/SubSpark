@@ -1,5 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import SparkelsIcon from "../components/SparklesIcon";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,9 +22,26 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={
+          `${geistSans.variable} ${geistMono.variable} antialiased` +
+          " bg-gradient-to-b from-[#3a3cac] to-[#47bce6] min-h-screen text-zinc-100"
+        }
       >
-        {children}
+        <main className="p-3 max-w-6xl mx-auto max-h-full cursor-default select-none">
+          <header className="flex justify-between items-center my-6">
+            <Link href="/" className="flex gap-1 drop-shadow-md">
+              <SparkelsIcon />
+              <span className="font-medium">SubSpark</span>
+            </Link>
+
+            <nav className="flex gap-3 sm:gap-5 font-light text-zinc-100">
+              <Link href="/">Home</Link>
+              <Link href="/pricing">Pricing</Link>
+              <Link href="mailto:contact@subspark.com">Contact</Link>
+            </nav>
+          </header>
+          {children}
+        </main>
       </body>
     </html>
   );
